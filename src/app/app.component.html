@@ -1,0 +1,37 @@
+<div style="padding:20px;">
+  <div style="width:50%;float:left">
+      <mat-card style="margin:20px auto;width:70%" fxLayout="column"  fxFlexAlign="center">
+          <h5>Add Task</h5>
+          <form [formGroup]="addTaskForm" fxLayout="column"  fxFlexAlign="center" style="width:100%">
+            <mat-form-field>
+              <input matInput placeholder="Enter Title" formControlName="title" required>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput placeholder="Enter Description"  formControlName="description" required>
+            </mat-form-field>
+            <button type="button" (click)="onSubmit()" [disabled]="!addTaskForm.valid" mat-raised-button
+              fxFlexAlign="start" color="primary">Add</button>
+          </form>
+        </mat-card>
+  </div>
+  <div style="width:50%;float:left">
+    <h4>List of Tasks</h4>
+      <mat-accordion>
+          <mat-expansion-panel *ngFor="let task of tasks">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+               {{task.title}}
+               <mat-checkbox style="position: absolute;right: 75px;" (change)="onFilterChange(task)" [(ngModel)]="task.completed">
+                 Click Me On Complete!</mat-checkbox>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+              {{task.description}}
+          </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</div>
+
+
+
+
